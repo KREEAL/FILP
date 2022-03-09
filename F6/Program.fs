@@ -43,7 +43,7 @@ let GCD x y =
 
 [<EntryPoint>]
 let main argv =
-    Console.WriteLine(Euler 12)//(12) = 1 5 7 11 (4)
+    Console.WriteLine(Euler 12)//(12) = 1 5 7 11 (4) 
     Console.WriteLine(Euler 30)//(30) = 1 7 11 13 17 19 23 29 (8)
     Console.WriteLine(GCD 60 50)// 10
     Console.WriteLine(GCD 45 60)// 15
