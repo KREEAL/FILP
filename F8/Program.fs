@@ -94,6 +94,7 @@ let GCD_maxNEOD_DigApp n =
 let main argv =
     maxEasyDivider 20 |>Console.WriteLine
     maxEasyDivider 19 |>Console.WriteLine
+
     notDivisibleBy5DigitsApp 12534 |> Console.WriteLine
     notDivisibleBy5DigitsApp 555 |> Console.WriteLine
     notDivisibleBy5DigitsApp 0 |> Console.WriteLine
