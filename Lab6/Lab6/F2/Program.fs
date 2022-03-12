@@ -12,13 +12,6 @@ let rec readList n =
     Head::Tail
 
 
-let rec writeList = function
-    [] ->   let z = System.Console.ReadKey()
-            0
-    | (head : int)::tail -> 
-                       System.Console.WriteLine(head)
-                       writeList tail
-
 let rec getByIndex list i =
     match list with 
     |[]-> -1
@@ -47,9 +40,11 @@ let isIndexedElMax list index =
 
 [<EntryPoint>]
 let main argv =
+    // 1.3  Является ли элемент по заданному индексу глобальным максимумом?
     let n = Console.ReadLine() |> Int32.Parse
     let index = Console.ReadLine() |> Int32.Parse
     let list = readList n
+
     let result = isIndexedElMax list index
     match result with
     |true ->Console.WriteLine "Является"
