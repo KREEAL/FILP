@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "F1", "ConsoleApp5\F1.fsproj", "{C6DD273F-035D-443B-8FB5-AA84F5481C37}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "F2", "F2\F2.fsproj", "{A6CD0756-D66F-4F04-AA49-5E38D575843C}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "F2", "F2\F2.fsproj", "{A6CD0756-D66F-4F04-AA49-5E38D575843C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C6DD273F-035D-443B-8FB5-AA84F5481C37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6DD273F-035D-443B-8FB5-AA84F5481C37}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6DD273F-035D-443B-8FB5-AA84F5481C37}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6DD273F-035D-443B-8FB5-AA84F5481C37}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A6CD0756-D66F-4F04-AA49-5E38D575843C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A6CD0756-D66F-4F04-AA49-5E38D575843C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6CD0756-D66F-4F04-AA49-5E38D575843C}.Release|Any CPU.ActiveCfg = Release|Any CPU
