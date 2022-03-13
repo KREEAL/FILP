@@ -40,7 +40,7 @@ let isLocalMin list i =
         if getByIndex list i < getByIndex list (i - 1) then true
         else false
     |_ -> 
-        if getByIndex list i < getByIndex list (i + 1) && getByIndex list i > getByIndex list (i + 1) then true else false
+        if getByIndex list i < getByIndex list (i + 1) && getByIndex list i < getByIndex list (i + 1) then true else false
 
 
 [<EntryPoint>]
