@@ -45,6 +45,7 @@ let isLocalMin list i =
 
 [<EntryPoint>]
 let main argv =
+    //Является ли элемент по указанному индексу локальным минимумом?
     let list = readList 5
     Console.WriteLine (isLocalMin list 2)
     0 // return an integer exit code
