@@ -27,7 +27,7 @@ let main argv =
     (*1.33
     Дан целочисленный массив. Проверить, чередуются ли в нем
     положительные и отрицательные числа.*)
-
+     
     let list = readData
     List.exactlyOne
     List.groupBy
