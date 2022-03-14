@@ -28,10 +28,10 @@ let main argv =
     let min = List.min list
     let isGreaterThan x y = y > x
     let minIdex = List.findIndex (fun x -> x = min) list// индекс первого вхождения min
-    Console.WriteLine minIdex 
+     
     let indexedList = List.indexed list
-    let firstGroup = list.[1..minIdex]
+    let firstGroup = list.[0..(minIdex - 1)]
     let lastGroup = list.[minIdex..List.length list]
-    
-    printfn "Hello World from F#!"
+    writeList((lastGroup@firstGroup))
+
     0 // return an integer exit code
