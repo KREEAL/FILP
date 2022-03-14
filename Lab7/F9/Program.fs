@@ -58,7 +58,8 @@ let split (s:string) =
 //Перемешивание листа по длине слов
 let permute s =
     let newS = split s
-    let permutedS = List.permute (fun x -> (x + 1) % List.length newS ) newS
+    let rnd = System.Random()
+    let permutedS = List.permute (fun x -> (x + 3) % List.length newS ) newS
     permutedS
 
 //сборка списка слов в строчку
