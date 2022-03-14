@@ -20,7 +20,21 @@ let rec writeList = function
                        System.Console.WriteLine(head)
                        writeList tail
 
-let f5 list = List.length (List.filter (fun x -> (List.exists (fun el -> el * el = x) list)) list)
+(*let isNegativeAlternation (list : 'int list) = 
+    let funcList = list
+    let pairsForList = list.[1..List.length funcList]
+    let commonList = list.[0..(List.length funcList - 2)]
+    let mappedList = List.map2 (fun x y -> if x * y < 0 then -1 else 1) commonList pairsForList
+    let res = List.length(List.filter(fun x -> x = 1) mappedList)
+    if res > 0 then false else true*)
+
+let pairsProcess (list : 'int list) f = 
+    let funcList = list
+    let pairsForList = list.[1..List.length funcList]
+    let commonList = list.[0..(List.length funcList - 2)]
+    let mappedList = List.map2 f commonList pairsForList
+    let res = List.length(List.filter(fun x -> x = 1) mappedList)
+    if res > 0 then false else true
 
 [<EntryPoint>]
 let main argv =
@@ -29,10 +43,7 @@ let main argv =
     положительные и отрицательные числа.*)
      
     let list = readData
-    List.exactlyOne
-    List.groupBy
-    List.pairwise
-    List.scan
-    let even = list.[0]
-    printfn "Hello World from F#!"
+    if pairsProcess list (fun x y -> if x * y < 0 then -1 else 1)  then Console.WriteLine("Чередуются")
+    else Console.WriteLine("Не чередуются")
+    
     0 // return an integer exit code
