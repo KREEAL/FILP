@@ -2,6 +2,16 @@
 
 open System
 
+let readRussianArray n =
+    let rec readArray_inside n arr = 
+        if n = 0 then arr
+        else
+        let tail = System.Console.ReadLine()
+        let newArr = Array.append arr [|tail|]
+        let n1 = n - 1
+        readArray_inside n1 newArr
+    readArray_inside n Array.empty
+
 let rec writeList = function
     [] ->   let z = System.Console.ReadKey()
             0
@@ -9,8 +19,9 @@ let rec writeList = function
                        System.Console.WriteLine(head)
                        writeList tail
 
-let readString =
-    Console.ReadLine()
+//let readString =
+   // Console.ReadLine()
+
 
 
 //поиск ближайшего пробела
@@ -38,6 +49,11 @@ let split (s:string) =
             let newS = s.[(findSpaceIndex s) .. String.length s]
             cutWords newS (words@[newWord])
     cutWords s []
+
+
+(*let split (s:string) (list:'string list) = 
+    let newWord = s.Split [|' '|]
+    newWord*)
 
 //Перемешивание листа по длине слов
 let permute s =
@@ -71,17 +87,20 @@ let rec accCond list (f : string -> int -> int) p acc =
 let evenWordsCount (s:string) = 
     let res = accCond (split s) (fun x y-> if (x.Length % 2 = 0) then y + 1 else y ) (fun x-> true) 0
     res
+
+let russianArray (arr:string array) = 
+    let newAr = Array.sortBy (fun (x:string) -> x.[1]) arr
+    newAr
+
 let defaultFunc s = 
     Console.Write("Прости, но нет такой возможности");
-//
-(*
-let chosedQuestion ask =
+
+let chosedQuestion ask s =
     match ask with
-    |1 -> permuteWords
-    |2 -> evenWordsCount
-    |3 -> 
-    |_ ->defaultFunc
-    *)
+    |1 -> permuteWords s
+    |2 -> evenWordsCount s
+    |3 -> russianArray s
+    |_ ->defaultFunc s
 
 [<EntryPoint>]
 let main argv =
@@ -98,10 +117,6 @@ let main argv =
     let output = chosedQuestion(fst input)(snd input) //каррирование
     Console.WriteLine("Результат применения к функции {1} строки {0}",fst input,output)   *)
 
-    let s = readString
-    writeList (split s)
-    Console.WriteLine(permuteWords s)
-
-    Console.Write res
-    printfn "Hello World from F#!"
+    let almostRussian = readRussianArray 3
+    //printfn "%A" (russianArray arr)
     0 // return an integer exit code
