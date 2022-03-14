@@ -92,15 +92,22 @@ let russianArray (arr:string array) =
     let newAr = Array.sortBy (fun (x:string) -> x.[1]) arr
     newAr
 
-let defaultFunc s = 
+let defaultFunc s= 
     Console.Write("Прости, но нет такой возможности");
 
-let chosedQuestion ask s =
-    match ask with
-    |1 -> permuteWords s
-    |2 -> evenWordsCount s
-    |3 -> russianArray s
-    |_ ->defaultFunc s
+let chosedQuestion pick  =
+    if pick = 1 then 
+        let (s:string) = Console.ReadLine()
+        Console.Write( permuteWords s ) 
+    else
+        if pick = 2 then 
+            let (s:string) = Console.ReadLine()
+            Console.Write(evenWordsCount s)
+        else 
+            if pick = 3 then 
+                    let rarr = readRussianArray 3
+                    printf "%A" (russianArray rarr)
+            else defaultFunc 0
 
 [<EntryPoint>]
 let main argv =
@@ -113,10 +120,16 @@ let main argv =
     Дан массив в котором находятся строки "белый", "синий" и
     "красный" в случайном порядке. Необходимо упорядочить массив так,
     чтобы получился российский флаг.*)
-    (*let input = (Console.ReadLine(),Console.ReadLine()|>Convert.ToInt32)
-    let output = chosedQuestion(fst input)(snd input) //каррирование
-    Console.WriteLine("Результат применения к функции {1} строки {0}",fst input,output)   *)
+    Console.Write("Выберите функцию. Согласно выбранной функции, далее введит корректный ввод\n 
+    1.Перемешать слова в строке\n
+    2.Кол-во четных слов\n
+    3.Флаг Росии из слов Белый Синий Красный в любом порядке\n")
 
-    let almostRussian = readRussianArray 3
+    let pick = Console.ReadLine() |>Convert.ToInt32
+    Console.WriteLine("Введите ввод\n")
+    chosedQuestion pick
+    
+ 
+     
     //printfn "%A" (russianArray arr)
     0 // return an integer exit code
