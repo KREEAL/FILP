@@ -59,14 +59,29 @@ let listToString (list: 'string list)=
 
 let permuteWords str =
     listToString(permute str)
+
+let rec accCond list (f : string -> int -> int) p acc = 
+    match list with
+    | [] -> acc
+    | h::t ->
+                let newAcc = f h acc
+                if p h then accCond t f p newAcc
+                else accCond t f p acc
+
+let evenWordsCount (s:string) = 
+    let res = accCond (split s) (fun x y-> if (x.Length % 2 = 0) then y + 1 else y ) (fun x-> true) 0
+    res
+let defaultFunc s = 
+    Console.Write("Прости, но нет такой возможности");
 //
 (*
 let chosedQuestion ask =
     match ask with
     |1 -> permuteWords
-    |2 ->
-    |3 ->
-    |_ ->*)
+    |2 -> evenWordsCount
+    |3 -> 
+    |_ ->defaultFunc
+    *)
 
 [<EntryPoint>]
 let main argv =
@@ -79,10 +94,14 @@ let main argv =
     Дан массив в котором находятся строки "белый", "синий" и
     "красный" в случайном порядке. Необходимо упорядочить массив так,
     чтобы получился российский флаг.*)
+    (*let input = (Console.ReadLine(),Console.ReadLine()|>Convert.ToInt32)
+    let output = chosedQuestion(fst input)(snd input) //каррирование
+    Console.WriteLine("Результат применения к функции {1} строки {0}",fst input,output)   *)
 
     let s = readString
     writeList (split s)
     Console.WriteLine(permuteWords s)
 
+    Console.Write res
     printfn "Hello World from F#!"
     0 // return an integer exit code
