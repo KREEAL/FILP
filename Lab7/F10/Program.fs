@@ -55,6 +55,16 @@ let alphabetFrequencyDifference (frequedCharList: (string * ((char * float) list
     //difference
     
 
+let firstTask strings =
+    let frequencyList = List.map (fun x -> freqList(x)) strings
+
+    let bigString = String.concat ("":string) (strings)//объединение всех строк - найдем частоту алфавита отсюда
+    let bigStringNoSpace = String.filter( fun x -> x <> ' ') bigString
+    let alphabet = freqList bigStringNoSpace //   
+    let listStringPlusSymbolChastotaCortej = List.map2(fun x y -> (x,y)) strings frequencyList // совмещенное строка и "массив" символ-частота
+    let SortedStrings = List.sortBy (fun x -> (alphabetFrequencyDifference x alphabet) ) listStringPlusSymbolChastotaCortej
+    writeStringList (List.map (fun x-> fst x )SortedStrings)
+
 //let difference string frequency alphabet =
   //  0
 
@@ -70,7 +80,7 @@ let main argv =
     строки*)
     (*let alphabetFrequency = [('a',0.1);('b',0.38);('c',0.21);('d',0.19);('e',0.12)])*)
     
-    let n = Console.ReadLine() |> Int32.Parse
+    (*let n = Console.ReadLine() |> Int32.Parse
     let strings = readStrings n []
     let frequencyList = List.map (fun x -> freqList(x)) strings
 
@@ -84,7 +94,7 @@ let main argv =
     let listStringPlusSymbolChastotaCortej = List.map2(fun x y -> (x,y)) strings frequencyList // совмещенное строка и "массив" символ-частота
     let SortedStrings = List.sortBy (fun x -> (alphabetFrequencyDifference x alphabet) ) listStringPlusSymbolChastotaCortej
 
-    writeStringList (List.map (fun x-> fst x )SortedStrings)
+    writeStringList (List.map (fun x-> fst x )SortedStrings)*)
     //(string * ((char * float) list))
     //let sortedStrings = List.sortBy (fun x -> (difference x alphabet)) strings 
 
