@@ -28,11 +28,11 @@ let rec writeFrequencedList = function
     |[] -> let z = System.Console.ReadKey()
            0
     | head::tail -> 
-                      writePairs head
+                      writePairs head 
                       Console.WriteLine " "
                       writeFrequencedList tail
 
-let count x = Seq.filter ((=) x) >> Seq.length
+
 
 
 
@@ -46,10 +46,20 @@ let freqList (s:string) =
     let symbolFreak = List.map (fun (x:char,x1:int)  -> (x , (Convert.ToDouble x1 ) / (Convert.ToDouble length)) )freq
     symbolFreak
 
-let difference string frequence alphabet = 
-   
+//разность между букавами и алфавитом
+let alphabetFrequencyDifference (frequedCharList: (string * ((char * float) list))) (alphabet:(char*float) list) =
+    let five = 5
+    let difference = snd (List.maxBy (fun x-> snd x) (snd frequedCharList)) - snd (List.find (fun x -> (fst x) = (fst (List.maxBy (fun x-> snd x) (snd frequedCharList)))) alphabet)
+    difference
+    //let difference = (List.find (fst (List.maxBy (fun x-> (snd x) frequedCharList)) alphabet) - (snd (List.maxBy (fun x ->(snd x)) frequedCharList))
+    //difference
     
-   [<EntryPoint>]
+
+//let difference string frequency alphabet =
+  //  0
+
+    
+[<EntryPoint>]
 let main argv =
     (*3
     В порядке увеличения разницы между частотой наиболее часто
@@ -66,12 +76,18 @@ let main argv =
 
     //writeFrequencedList frequencyList
 
-    let bigString = String.concat ("":string) (strings)
+    let bigString = String.concat ("":string) (strings)//объединение всех строк - найдем частоту алфавита отсюда
     let bigStringNoSpace = String.filter( fun x -> x <> ' ') bigString
-    let alphabet = freqList bigStringNoSpace
-    writePairs alphabet
+    let alphabet = freqList bigStringNoSpace //
+    //writePairs alphabet
 
-    List.sortBy ()
+    let listStringPlusSymbolChastotaCortej = List.map2(fun x y -> (x,y)) strings frequencyList // совмещенное строка и "массив" символ-частота
+    let SortedStrings = List.sortBy (fun x -> (alphabetFrequencyDifference x alphabet) ) listStringPlusSymbolChastotaCortej
+
+    writeStringList (List.map (fun x-> fst x )SortedStrings)
+    //(string * ((char * float) list))
+    //let sortedStrings = List.sortBy (fun x -> (difference x alphabet)) strings 
+
     printfn "Hello World from F#!"
     0 // return an integer exit code
 
