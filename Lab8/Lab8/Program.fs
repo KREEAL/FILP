@@ -4,10 +4,27 @@ open System
 
 [<AbstractClass>]
 type GeometryFigure() =
-    abstract member Square: double -> double -> double
+    abstract member Square: unit -> double
+
+type Rectangle(ap:double,bp:double)=
+    inherit GeometryFigure()
+    let mutable width = ap
+    let mutable height = bp
+    member this.ReadWriteWidth
+        with get() = width
+        and set(value) = width <-value
+    member this.ReadWriteHeight
+        with get() = height
+        and set(value) = height <-value
+    override this.Square() = (height * width)
+    new(a:double) = Rectangle(a,a)
+
+
 
 [<EntryPoint>]
 let main argv =
-
+    let Rect1 = Rectangle(2.0,4.0)
+    Console.WriteLine (Rect1.Square())
+    
     printfn "Hello World from F#!"
     0 // return an integer exit code
