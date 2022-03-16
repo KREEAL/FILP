@@ -17,14 +17,22 @@ type Rectangle(ap:double,bp:double)=
         with get() = height
         and set(value) = height <-value
     override this.Square() = (height * width)
-    new(a:double) = Rectangle(a,a)
 
-
+type Square(ap:double,bp:double)=
+    inherit Rectangle(ap,bp)
+    let mutable side = ap
+    member this.ReadWriteSide
+        with get() = side
+        and set(value) = side <-value
+    new(a:double) = Square(a,a)
 
 [<EntryPoint>]
 let main argv =
     let Rect1 = Rectangle(2.0,4.0)
     Console.WriteLine (Rect1.Square())
     
+    let Sqre = Square(5.0)
+    Console.WriteLine(Sqre.Square())
+
     printfn "Hello World from F#!"
     0 // return an integer exit code
