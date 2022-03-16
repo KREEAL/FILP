@@ -92,6 +92,8 @@ let main argv =
     
     let n = Console.ReadLine() |> Int32.Parse
     let strings = readStrings n []
-
+    firstTask strings
+    Console.WriteLine " "
+    secondTask strings
     
     0 // return an integer exit code
