@@ -46,7 +46,7 @@ let freqList (s:string) =
     let symbolFreak = List.map (fun (x:char,x1:int)  -> (x , (Convert.ToDouble x1 ) / (Convert.ToDouble length)) )freq
     symbolFreak
 
-//разность между букавами и алфавитом
+//разность между букавами и алфавитом. нужно для сортировки
 let alphabetFrequencyDifference (frequedCharList: (string * ((char * float) list))) (alphabet:(char*float) list) =
     let five = 5
     let difference = snd (List.maxBy (fun x-> snd x) (snd frequedCharList)) - snd (List.find (fun x -> (fst x) = (fst (List.maxBy (fun x-> snd x) (snd frequedCharList)))) alphabet)
@@ -65,10 +65,21 @@ let firstTask strings =
     let SortedStrings = List.sortBy (fun x -> (alphabetFrequencyDifference x alphabet) ) listStringPlusSymbolChastotaCortej
     writeStringList (List.map (fun x-> fst x )SortedStrings)
 
-//let difference string frequency alphabet =
-  //  0
+//перевод в аски код
+let inline charToInt c = int c - int '0'
 
-    
+let getAverageAsciiWeight string = 
+    //let charlist = Seq.toList string//строка в список чаров
+    //let newL = List.map (fun x-> Convert.ToDouble (charToInt x)) charlist //все символы в аски
+    let AverageAscii = List.average (List.map (fun x-> Convert.ToDouble (charToInt x)) (Seq.toList string))
+    AverageAscii
+
+let secondTask (strings:'string list) =
+    let firstStringWeight = getAverageAsciiWeight strings.Head
+    Console.WriteLine strings.Head
+    let sortedS = List.sortBy (fun x-> pown ((getAverageAsciiWeight x) - firstStringWeight) 2) strings.Tail
+    writeStringList (sortedS)
+
 [<EntryPoint>]
 let main argv =
     (*3
@@ -78,35 +89,9 @@ let main argv =
     В порядке увеличения квадратичного отклонения среднего веса
     ASCII-кода символа строки от среднего веса ASCII-кода символа первой
     строки*)
-    (*let alphabetFrequency = [('a',0.1);('b',0.38);('c',0.21);('d',0.19);('e',0.12)])*)
     
-    (*let n = Console.ReadLine() |> Int32.Parse
+    let n = Console.ReadLine() |> Int32.Parse
     let strings = readStrings n []
-    let frequencyList = List.map (fun x -> freqList(x)) strings
 
-    //writeFrequencedList frequencyList
-
-    let bigString = String.concat ("":string) (strings)//объединение всех строк - найдем частоту алфавита отсюда
-    let bigStringNoSpace = String.filter( fun x -> x <> ' ') bigString
-    let alphabet = freqList bigStringNoSpace //
-    //writePairs alphabet
-
-    let listStringPlusSymbolChastotaCortej = List.map2(fun x y -> (x,y)) strings frequencyList // совмещенное строка и "массив" символ-частота
-    let SortedStrings = List.sortBy (fun x -> (alphabetFrequencyDifference x alphabet) ) listStringPlusSymbolChastotaCortej
-
-    writeStringList (List.map (fun x-> fst x )SortedStrings)*)
-    //(string * ((char * float) list))
-    //let sortedStrings = List.sortBy (fun x -> (difference x alphabet)) strings 
-
-    printfn "Hello World from F#!"
+    
     0 // return an integer exit code
-
-
-(*
-5
-Привет я
-Анатолий Вассерман
-Что бы такого сказать
-Ууууубью сука
-пшел вон
-*)
