@@ -55,6 +55,29 @@ type Circle(ap:double)=
         member this.Print(): unit = Console.WriteLine(this.ToString())
         end
 
+
+//2
+type GeometryFig = 
+    |Rectangl of double * double
+    |Squar of double
+    |Circl of double 
+
+let pickFigure (a:double, b:double, c:double):GeometryFig =
+    match c with
+    |1.0-> Rectangl (a, b)
+    |2.0-> Squar a
+    |3.0-> Circl b
+
+let calculateSquare (ap:double) (bp:double) (cp:double) = 
+    let figur = pickFigure(ap,bp,cp)
+    let res =
+        match figur with
+            |Rectangl(a,b) -> a*b
+            |Squar(c)-> c*c
+            |Circl(r)-> r*Math.PI
+    res
+
+
 [<EntryPoint>]
 let main argv =
     let Rect1 = Rectangle(2.0,4.0)
@@ -68,5 +91,7 @@ let main argv =
     let Crcl = Circle(2.0)
     Console.WriteLine(Crcl.Square())
     Console.WriteLine(Crcl.ToString())
+
+    
    
     0 // return an integer exit code
