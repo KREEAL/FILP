@@ -2,9 +2,15 @@
 
 open System
 
+
 [<AbstractClass>]
 type GeometryFigure() =
     abstract member Square: unit -> double
+
+type IPrint = interface 
+    abstract member Print: unit -> unit
+    end
+
 
 type Rectangle(ap:double,bp:double)=
     inherit GeometryFigure()
@@ -19,12 +25,21 @@ type Rectangle(ap:double,bp:double)=
     override this.Square() = (height * width)
     override this.ToString() = "Прямоугольник. Ширина: "+ width.ToString() + ", высота: " + height.ToString() + ", площадь: "+ this.Square().ToString()
     
+    interface IPrint with
+        member this.Print(): unit = Console.WriteLine(this.ToString())
+        end
+            
+            
 
 type Square(ap:double,bp:double)=
     inherit Rectangle(ap,bp)
     member this.side: double = ap
     new(a:double) = Square(a,a)
     override this.ToString() = "Квадрат. Сторона: "+ this.side.ToString() + ", площадь: "+ this.Square().ToString()
+
+    interface IPrint with
+        member this.Print(): unit = Console.WriteLine(this.ToString())
+        end
 
 type Circle(ap:double)=
     inherit GeometryFigure()
@@ -35,6 +50,10 @@ type Circle(ap:double)=
         and set(value) = radius <-value
     override this.Square() = pown radius 2 * pi
     override this.ToString() = "Круг. Радиус: "+ radius.ToString() + ", площадь: "+ this.Square().ToString()
+
+    interface IPrint with
+        member this.Print(): unit = Console.WriteLine(this.ToString())
+        end
 
 [<EntryPoint>]
 let main argv =
@@ -49,6 +68,5 @@ let main argv =
     let Crcl = Circle(2.0)
     Console.WriteLine(Crcl.Square())
     Console.WriteLine(Crcl.ToString())
-
    
     0 // return an integer exit code
