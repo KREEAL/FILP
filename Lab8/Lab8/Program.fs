@@ -17,11 +17,14 @@ type Rectangle(ap:double,bp:double)=
         with get() = height
         and set(value) = height <-value
     override this.Square() = (height * width)
+    override this.ToString() = "Прямоугольник. Ширина: "+ width.ToString() + ", высота: " + height.ToString() + ", площадь: "+ this.Square().ToString()
+    
 
 type Square(ap:double,bp:double)=
     inherit Rectangle(ap,bp)
     member this.side: double = ap
     new(a:double) = Square(a,a)
+    override this.ToString() = "Квадрат. Сторона: "+ this.side.ToString() + ", площадь: "+ this.Square().ToString()
 
 type Circle(ap:double)=
     inherit GeometryFigure()
@@ -30,19 +33,22 @@ type Circle(ap:double)=
     member this.ReadWriteRadius
         with get() = radius
         and set(value) = radius <-value
-
     override this.Square() = pown radius 2 * pi
+    override this.ToString() = "Круг. Радиус: "+ radius.ToString() + ", площадь: "+ this.Square().ToString()
 
 [<EntryPoint>]
 let main argv =
     let Rect1 = Rectangle(2.0,4.0)
     Console.WriteLine (Rect1.Square())
-    
+    Console.WriteLine(Rect1.ToString())
+
     let Sqre = Square(5.0)
     Console.WriteLine(Sqre.Square())
+    Console.WriteLine(Sqre.ToString())
 
     let Crcl = Circle(2.0)
     Console.WriteLine(Crcl.Square())
+    Console.WriteLine(Crcl.ToString())
 
-    printfn "Hello World from F#!"
+   
     0 // return an integer exit code
