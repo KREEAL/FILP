@@ -44,7 +44,9 @@ let triplet list (f : int -> int -> int -> int) =
         
     triplet_inside list f 1 1 1 0 []
     
-
+    //a::t
+    //a::b::t
+    //a::b::c::d
 [<EntryPoint>]
 let main argv =
     let n = Console.ReadLine()|>Int32.Parse
