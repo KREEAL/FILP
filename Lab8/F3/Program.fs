@@ -54,7 +54,7 @@ let rec EvalExpr(e:Expr):float =
 [<EntryPoint>]
 let main argv =
     Console.WriteLine("Введите выражение: ")
-    let (input:string) = Console.ReadLine()
+    let (input:string) = Console.ReadLine() 
     let expr1 = run parseExpression input //каждая операция сопровождается скобками. Результат (2+5)-(4+6) вычислен не будет. Но ((2+5)-(4+6)) будет
     Console.WriteLine(expr1)//распаршенное выражение
     match expr1 with
