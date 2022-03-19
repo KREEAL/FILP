@@ -11,8 +11,12 @@ type driversLicense(nam:string, surnam:string, birtDt:DateTime, plac:string, ext
     member this.exprDT:DateTime = expDt
     member this.num:int = nm
 
+    override this.ToString() = "Водительские права:"+"\n Имя: "+ this.name + "\n Фамилия: " + this.surname+ "\n Дата рождения: "+ this.birthDt.ToShortDateString()  + "\n Место рождения: " + this.place+ "\n Дата выдачи: "+ this.extrDT.ToShortDateString() + "\n Дата конца срока: "+ this.exprDT.ToShortDateString() + "\n Номер: " + this.num.ToString() 
+
 
 [<EntryPoint>]
 let main argv =
-    printfn "Hello World from F#!"
+
+    let drL1 = driversLicense("Иван","Иванов",DateTime.Parse "01.01.1990","г.Москва",DateTime.Parse "01.01.2020",DateTime.Parse "01.01.2030",7777777)
+    Console.WriteLine drL1
     0 // return an integer exit code
