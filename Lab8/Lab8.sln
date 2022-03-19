@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "F1", "Lab8\F1.fsproj", "{DB3FC623-77B2-41B2-99B0-5996F8EF6C16}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "F1", "Lab8\F1.fsproj", "{DB3FC623-77B2-41B2-99B0-5996F8EF6C16}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "F2", "F2\F2.fsproj", "{58C3FBD3-6356-4D7D-9465-3D5CDD0436AC}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "F2", "F2\F2.fsproj", "{58C3FBD3-6356-4D7D-9465-3D5CDD0436AC}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "F3", "F3\F3.fsproj", "{377CCCD7-0B2C-459A-AC6F-0B3CD08BF468}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "F3", "F3\F3.fsproj", "{377CCCD7-0B2C-459A-AC6F-0B3CD08BF468}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "F4", "F4\F4.fsproj", "{8A108704-5D3E-4F56-B497-68A563ABC955}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{377CCCD7-0B2C-459A-AC6F-0B3CD08BF468}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{377CCCD7-0B2C-459A-AC6F-0B3CD08BF468}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{377CCCD7-0B2C-459A-AC6F-0B3CD08BF468}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A108704-5D3E-4F56-B497-68A563ABC955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A108704-5D3E-4F56-B497-68A563ABC955}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A108704-5D3E-4F56-B497-68A563ABC955}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A108704-5D3E-4F56-B497-68A563ABC955}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
