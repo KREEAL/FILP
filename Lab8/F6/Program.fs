@@ -157,7 +157,7 @@ let main argv =
     ////********************************************************//
     let coolBinaryList = SetDocClass(licensesList)
     coolBinaryList.searchDoc(drL4)//56-61
-    ////**************************
+    ////***************************
 
 
     //Console.WriteLine(Ar1)
