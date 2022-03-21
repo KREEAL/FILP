@@ -12,7 +12,11 @@ type driversLicense(nam:string, surnam:string, birtDt:DateTime, plac:string, ext
     member this.extrDT:DateTime = extDt
     member this.exprDT:DateTime = expDt
     member this.num:int = nm
-
+    override this.Equals(b) =
+          match b with
+          | :? driversLicense as p -> (this.num) = (p.num)
+          | _ -> false
+    override this.GetHashCode() = this.num.GetHashCode()
     override this.ToString() = "\nВодительские права:"+"\n Имя: "+ this.name + "\n Фамилия: " + this.surname+ "\n Дата рождения: "+ this.birthDt.ToShortDateString()  + "\n Место рождения: " + this.place+ "\n Дата выдачи: "+ this.extrDT.ToShortDateString() + "\n Дата конца срока: "+ this.exprDT.ToShortDateString() + "\n Номер: " + this.num.ToString()+"\n"
 
 let driverLicenseNumEquality (dr1:driversLicense) (dr2:driversLicense) =

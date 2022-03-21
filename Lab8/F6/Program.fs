@@ -11,28 +11,25 @@ type driversLicense(nam:string, surnam:string, birtDt:DateTime, plac:string, ext
     member this.extrDT:DateTime = extDt
     member this.exprDT:DateTime = expDt
     member this.num:int = nm
-
+    override this.Equals(b) =
+        match b with
+        | :? driversLicense as p -> (this.num) = (p.num)
+        | _ -> false
+    override this.GetHashCode() = this.num.GetHashCode()
     override this.ToString() = "\nВодительские права:"+"\n Имя: "+ this.name + "\n Фамилия: " + this.surname+ "\n Дата рождения: "+ this.birthDt.ToShortDateString()  + "\n Место рождения: " + this.place+ "\n Дата выдачи: "+ this.extrDT.ToShortDateString() + "\n Дата конца срока: "+ this.exprDT.ToShortDateString() + "\n Номер: " + this.num.ToString()+"\n"
-
-let driverLicenseNumEquality (dr1:driversLicense) (dr2:driversLicense) =
-    if dr1.num = dr2.num then true
-    else false
 
 [<AbstractClass>]
 type DocClass() =
     abstract member searchDoc: driversLicense -> bool
-(*
-type ArrayDocClass()=
+
+
+type ArrayDocClass(list:'driversLicense list)=
     inherit DocClass()
-    let mutable Arr = Array.empty
-    override this.searchDoc(drl) =  Array.contains drl Arr 
-    member this.Add (x:driversLicense) = 
-        let newArr = (Array.append  Arr [|x|]) 
-        Arr = Array.append [|x|] Arr
-        Console.WriteLine("Элемент добавлен")
-    member this.Remove(x:driversLicense) = Array.filter (fun q-> not (driverLicenseNumEquality q x)) Arr
+    member this.Arr = Array.create (List.length list) list
+    override this.searchDoc(drl) =  Array.exists drl this.Arr
+
     override this.ToString() = "Записей: " + Arr.Length.ToString()
-    //member this Arr: driversLicense*)
+    //member this Arr: driversLicense
 
 [<EntryPoint>]
 let main argv =

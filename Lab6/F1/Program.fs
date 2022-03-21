@@ -55,10 +55,8 @@ let triplet (list:'int list) =
         |[] -> resList
         |a::b::c::t->
                 triplet_inside t (resList @ [sum3 a b c])
-        |a::b::t->
-                triplet_inside t (resList @ [sum3 a b 1])
-        |a::t->
-                triplet_inside t (resList @ [sum3 a 1 1])
+        |a::b::[]-> (resList @ [sum3 a b 1])
+        |a::[]-> (resList @ [sum3 a 1 1])
     triplet_inside list List.empty
 
 
