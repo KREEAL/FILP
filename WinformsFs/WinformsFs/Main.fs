@@ -73,14 +73,15 @@ let main argv =
     Form1.Controls.Add(button2)
     Form1.Controls.Add(button3)
     Form1.Controls.Add(button4)
-    let Summ_ = MessageBox.Show(string(int(Edit1.Text) + (int(Edit2.Text))), "Сумма") |>ignore
-    let Minus_ = MessageBox.Show(string(int(Edit1.Text) - (int(Edit2.Text))), "Разность") |>ignore
-    let Umnoj_ = MessageBox.Show(string(int(Edit1.Text) * (int(Edit2.Text))), "Умножение") |>ignore
-    let Del_ = MessageBox.Show(string(int(Edit1.Text)/ (int(Edit2.Text))), "Деление") |> ignore
-    let _ = button1.Click.Add((fun (e:EventArgs) -> Summ_))
-    let _ = button2.Click.Add((fun e -> Minus_))
-    let _ = button3.Click.Add((fun e -> Umnoj_))
-    let _ = button4.Click.Add((fun e -> Del_))
+    //let Summ_ = MessageBox.Show(string(int(Edit1.Text) + (int(Edit2.Text))), "Сумма") |>ignore
+    //let Minus_ = MessageBox.Show(string(int(Edit1.Text) - (int(Edit2.Text))), "Разность") |>ignore
+    //let Umnoj_ = MessageBox.Show(string(int(Edit1.Text) * (int(Edit2.Text))), "Умножение") |>ignore
+    //let Del_ = MessageBox.Show(string(int(Edit1.Text)/ (int(Edit2.Text))), "Деление") |> ignore
+    //вместо этих длинных штук должны быть Summ_ и тд но оно не работает
+    let _ = button1.Click.Add((fun (e:EventArgs) -> (MessageBox.Show(string(int(Edit1.Text) + (int(Edit2.Text))), "Сумма") |>ignore)))
+    let _ = button2.Click.Add((fun e -> (MessageBox.Show(string(int(Edit1.Text) - (int(Edit2.Text))), "Разность") |>ignore)))
+    let _ = button3.Click.Add((fun e -> (MessageBox.Show(string(int(Edit1.Text) * (int(Edit2.Text))), "Умножение") |>ignore)))
+    let _ = button4.Click.Add((fun e -> (MessageBox.Show(string(int(Edit1.Text)/ (int(Edit2.Text))), "Деление") |> ignore)))
 
     //Форма_2
     let Form2 = new Form(Width= 400, Height = 300, Text = "Дочерняя форма №2")
@@ -99,13 +100,13 @@ let main argv =
     let Button2 = new Button(Dock=DockStyle.Bottom, Text="Нажми меня")
     Form3.Controls.Add(Cal)
     Form3.Controls.Add(Button2)
-    let MsgDay_ = MessageBox.Show ("Сегодня "+string DateTime.Today, "Дата") |> ignore
-    let _ = Button2.Click.Add((fun e ->MsgDay_))
+    //let MsgDay_ = MessageBox.Show ("Сегодня "+string DateTime.Today, "Дата") |> ignore
+    let _ = Button2.Click.Add((fun e ->(MessageBox.Show ("Сегодня "+string DateTime.Today, "Дата") |> ignore)))
 
     //Вызов форм
-    let opForm1 _ = do Form1.ShowDialog()
-    let opForm2 _ = do Form2.ShowDialog()
-    let opForm3 _ = do Form3.ShowDialog()
+    let opForm1 _ = do Form1.ShowDialog() //|> ignore
+    let opForm2 _ = do Form2.ShowDialog() //|> ignore
+    let opForm3 _ = do Form3.ShowDialog() //|> ignore
     //
     let _ = miForm1.Click.Add(opForm1)
     let _ = miForm2.Click.Add(opForm2)
@@ -115,7 +116,7 @@ let main argv =
 
 
     // Запускаем форму
-    do Application.Run(Form1)
+    do Application.Run(form)
 
     // Создание сообщения
     
