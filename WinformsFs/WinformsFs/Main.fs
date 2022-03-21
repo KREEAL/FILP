@@ -7,10 +7,8 @@ open System.Windows.Forms
 let main argv =
     Application.EnableVisualStyles()
     Application.SetCompatibleTextRenderingDefault(false)
-    use form = new StartupForm()
-
-    let form = new Form(Width= 400, Height = 300, Text = "F# Главная форма", 
-    Menu = new MainMenu())
+    (*
+    let form = new Form(Width= 400, Height = 300, Text = "F# Главная форма", Menu = new MainMenu())
     // Меню бар 
     let mFile = form.Menu.MenuItems.Add("Файл")
     let mForms = form.Menu.MenuItems.Add("Формы")
@@ -112,11 +110,31 @@ let main argv =
     let _ = miForm2.Click.Add(opForm2)
     let _ = miForm3.Click.Add(opForm3)
     let _ = Button1.Click.Add(opForm3)
+    *)
 
-
+    let Form1 = new Form(Text = "Дочерняя форма №1" ,Width = 400, Height = 300)
+    let Edit1 = new TextBox(Text="10")
+    let Edit2 = new TextBox(Top=20, Text="5")
+    let button1 = new Button(Text="+", Top=50, Width=25, Height=25)
+    let button2 = new Button(Text="-", Top=50, Left=30, Width=25, Height=25)
+    let button3 = new Button(Text="*", Top=50, Left=60, Width=25, Height=25)
+    let button4 = new Button(Text="/", Top=50, Left=90, Width=25, Height=25)
+    Form1.Controls.Add(Edit1)
+    Form1.Controls.Add(Edit2)
+    Form1.Controls.Add(button1)
+    Form1.Controls.Add(button2)
+    Form1.Controls.Add(button3)
+    Form1.Controls.Add(button4)
+    let _ = button1.Click.Add((fun (e:EventArgs) -> (MessageBox.Show(string(double(Edit1.Text) + (double(Edit2.Text))), "Сумма") |>ignore)))
+    let _ = button2.Click.Add((fun e -> (MessageBox.Show(string(double(Edit1.Text) - (double(Edit2.Text))), "Разность") |>ignore)))
+    let _ = button3.Click.Add((fun e -> (MessageBox.Show(string(double(Edit1.Text) * (double(Edit2.Text))), "Умножение") |>ignore)))
+    let _ = button4.Click.Add((fun e -> (
+        if (double(Edit2.Text)) = 0.0 then (MessageBox.Show("Нельзя делить на ноль!", "Деление") |> ignore)
+        else
+        (MessageBox.Show(string(double(Edit1.Text) / (double(Edit2.Text))), "Деление") |> ignore))))
 
     // Запускаем форму
-    do Application.Run(form)
+    do Application.Run(Form1)
 
     // Создание сообщения
     
