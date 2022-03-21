@@ -138,26 +138,26 @@ let main argv =
     
     let licensesList = [drL1]@[drL2]@[drL3]@[drL4]@[drL5]
 
-    //********************************************************//
-    //let coolArray = ArrayDocClass(licensesList)
-    //coolArray.searchDoc(drL4)//где-то 50 тиков проходит(45-60)
-    //********************************************************//
+    ////********************************************************//
+    let coolArray = ArrayDocClass(licensesList)
+    coolArray.searchDoc(drL4)//где-то 50 тиков проходит(45-60)
+    ////********************************************************//
 
 
-    //********************************************************//
-    //let coolList = ListDocClass(licensesList)
-    //coolList.searchDoc(drL4)//три раза подряд дало 53 тика
-    //********************************************************//
+    ////********************************************************//
+    let coolList = ListDocClass(licensesList)
+    coolList.searchDoc(drL4)//три раза подряд дало 53 тика
+    ////********************************************************//
 
-    //********************************************************//
-    //let coolSet = SetDocClass(licensesList)
-    //coolSet.searchDoc(drL4)//47-77 тиков
-    //**************************
+    ////********************************************************//
+    let coolSet = SetDocClass(licensesList)
+    coolSet.searchDoc(drL4)//47-77 тиков
+    ////**************************
 
-    //********************************************************//
-    //let coolBinaryList = SetDocClass(licensesList)
-    //coolBinaryList.searchDoc(drL4)//56-61
-    //**************************
+    ////********************************************************//
+    let coolBinaryList = SetDocClass(licensesList)
+    coolBinaryList.searchDoc(drL4)//56-61
+    ////**************************
 
 
     //Console.WriteLine(Ar1)
