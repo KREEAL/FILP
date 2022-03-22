@@ -11,6 +11,8 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "WinformsFs2", "WinformsFs2\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinformsFs.UiDesign2", "WinformsFs.UiDesign2\WinformsFs.UiDesign2.csproj", "{C53E4872-F168-4198-965D-410CC68AF9B3}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "WinformsFs3", "WinformsFs3\WinformsFs3.fsproj", "{F2CB82EA-386F-40A4-9D32-9A2A2399BB14}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C53E4872-F168-4198-965D-410CC68AF9B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C53E4872-F168-4198-965D-410CC68AF9B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C53E4872-F168-4198-965D-410CC68AF9B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2CB82EA-386F-40A4-9D32-9A2A2399BB14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2CB82EA-386F-40A4-9D32-9A2A2399BB14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2CB82EA-386F-40A4-9D32-9A2A2399BB14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2CB82EA-386F-40A4-9D32-9A2A2399BB14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
