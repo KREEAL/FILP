@@ -1,4 +1,4 @@
-﻿open System
+﻿(*open System
 open System.Windows.Forms
 open System.Drawing
 Application.EnableVisualStyles()
@@ -65,6 +65,42 @@ button4.Click.AddHandler(fun _ _ ->
     let run = textBox4.Text<- (list1 |> Seq.map string |> String.concat ", ")
     run 
     |> ignore)
+
+
+// запуск формы
+Application.Run(form)*)
+open System
+open System.Windows.Forms
+open System.Drawing
+Application.EnableVisualStyles()
+let form = new Form(Width=302, Height=350,Text = "Работа со списками")
+
+let button2 = new Button(Left=21, Top=81, Text="объединение списков", Width=96, Height=46)
+let textBox2 = new TextBox(Left=156, Top=107, Width=114, Height=20)
+let textBox5 = new TextBox(Left=156, Text="a,b,c",Top=81, Width=46,Height=20)
+let textBox6 = new TextBox(Left=222, Text="x,y,z",Top=81, Width=48, Height=20)
+
+ // Form1
+ // 
+form.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+form.ClientSize = new System.Drawing.Size(302, 314);
+form.Controls.Add(textBox6);
+form.Controls.Add(textBox5);
+form.Controls.Add(textBox2);
+form.Controls.Add(button2);
+form.Text = "Работа со списками";
+form.ResumeLayout(false);
+form.PerformLayout();
+
+button2.Click.AddHandler(fun _ _ -> 
+    let list1 = textBox5.Text
+    let list2 = textBox6.Text
+    let list3 = list1+ "," + list2 + ","+ textBox2.Text 
+    let run = textBox2.Text<- list3
+    run 
+    |> ignore)
+
+
 
 
 // запуск формы
