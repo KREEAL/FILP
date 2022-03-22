@@ -96,5 +96,58 @@ button10.Click.AddHandler(fun _ _ ->
     let msg = sprintf "Автор: Цветков К.А. \nГруппа:26/1 \nE-Mail:k-real1337@mail.ru" 
     MessageBox.Show(msg)|> ignore)
 button11.Click.AddHandler(fun _ _ -> win.Close())
+
+let nw= "
+<Window
+xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'
+ xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
+ Title='New Window' Height='221' Width='351'>
+ <Grid>
+ <Grid.ColumnDefinitions>
+ <ColumnDefinition Width='156*' />
+ <ColumnDefinition Width='163' />
+ </Grid.ColumnDefinitions>
+ <Button Content='Apply' Grid.Column='1' Height='23' HorizontalAlignment='Left' Margin='76,30,0,0' Name='button1' VerticalAlignment='Top' 
+Width='75' IsEnabled='False' />
+ <TextBox Height='23' HorizontalAlignment='Left' Margin='20,30,0,0' 
+Name='textBox1' VerticalAlignment='Top' Width='216' Grid.ColumnSpan='2' 
+IsEnabled='False' />
+ <Button Content='Close' Height='23' HorizontalAlignment='Left' Margin='12,153,0,0' Name='button2' VerticalAlignment='Top' Width='305' 
+Grid.ColumnSpan='2' />
+ <CheckBox Content='Заголовок окна:' Height='16' HorizontalAlignment='Left' Margin='12,9,0,0' Name='checkBox1' VerticalAlignment='Top' />
+ <RadioButton Content='RadioButton' Height='16' HorizontalAlignment='Left' Margin='12,73,0,0' Name='radioButton1' VerticalAlignment='Top' 
+/>
+ <RadioButton Content='RadioButton' Height='16' HorizontalAlignment='Left' Margin='12,95,0,0' Name='radioButton2' VerticalAlignment='Top' 
+/>
+ <RadioButton Content='RadioButton' Height='16' HorizontalAlignment='Left' Margin='12,117,0,0' Name='radioButton3' VerticalAlignment='Top' 
+/>
+ <Label Content=' ' Grid.Column='1' Height='28' HorizontalAlignment='Left' Margin='96,90,0,0' Name='label1' VerticalAlignment='Top' />
+ </Grid>
+</Window>
+"
+let getWindow1(nw) =
+ let xamlObj=XamlReader.Parse(nw)
+ xamlObj :?> Window
+let wind = getWindow1(nw)
+let nb1 = wind.FindName("button1") :?> Button
+let nb2 = wind.FindName("button2") :?> Button
+let ncb = wind.FindName("checkBox1") :?> CheckBox
+let nrb1 = wind.FindName("radioButton1") :?> RadioButton
+let nrb2 = wind.FindName("radioButton2") :?> RadioButton
+let nrb3 = wind.FindName("radioButton3") :?> RadioButton
+let nl = wind.FindName("label1") :?> Label
+let ntb = wind.FindName("textBox1") :?> TextBox
+button12.Click.AddHandler(fun _ _ -> wind.Show()|>ignore)
+(*
+ncb.Checked.Add(fun _ -> ntb.IsEnabled <-true
+        nb1.IsEnabled <-true )
+ncb.Unchecked.Add(fun _ -> ntb.IsEnabled<-false
+    nb1.IsEnabled<-false)
+
+nb1.Click.AddHandler(fun _ _ -> wind.Title<-ntb.Text)
+nb2.Click.AddHandler(fun _ _ -> wind.Hide())
+nrb1.Checked.Add(fun _ -> nl.Content<-"1")
+nrb2.Checked.Add(fun _ -> nl.Content<-"2")
+nrb3.Checked.Add(fun _ -> nl.Content<-"3"*)
 // запуск приложения
 [<STAThread>] ignore <| (new Application()).Run win 
