@@ -1,4 +1,4 @@
-﻿open System
+﻿(*open System
 open System.Windows
 open System.Windows.Controls
 open System.Windows.Markup
@@ -9,6 +9,7 @@ xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'
  xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
  Title='F# WPF' Height='280' Width='320'>
  <Grid>
+
  <Grid.ColumnDefinitions>
  <ColumnDefinition Width='156*' />
  <ColumnDefinition Width='163' />
@@ -56,6 +57,7 @@ Grid.ColumnSpan='2' />
 Grid.Column='1' />
  <Button Content='Create new Window' Height='23' HorizontalAlignment='Left' Margin='12,193,0,0' Name='button12' VerticalAlignment='Top' 
 Width='286' Grid.ColumnSpan='2' />
+
  </Grid>
 </Window>
 " 
@@ -152,4 +154,107 @@ nrb1.Checked.Add(fun _ -> nl.Content<-"1")
 nrb2.Checked.Add(fun _ -> nl.Content<-"2")
 nrb3.Checked.Add(fun _ -> nl.Content<-"3")
 // запуск приложения
+
+
+
+
+[<STAThread>] ignore <| (new Application()).Run win 
+*)
+open System
+open System.Windows
+open System.Windows.Controls
+open System.Windows.Markup
+//Главная форма
+let mwXaml = " 
+<Window 
+xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'
+ xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
+ Title='F# WPF' Height='280' Width='320'>
+ <Grid>
+
+ <Grid.ColumnDefinitions>
+ <ColumnDefinition Width='156*' />
+ <ColumnDefinition Width='163' />
+ </Grid.ColumnDefinitions>
+
+
+ <GroupBox Header='[Введите числа:]' Height='100' HorizontalAlignment='Left' Name='groupBox1' VerticalAlignment='Top' Width='313' 
+ Grid.ColumnSpan='2'>
+  <Grid>
+  <Grid.ColumnDefinitions>
+  <ColumnDefinition Width='38*' />
+  <ColumnDefinition Width='453*' />
+  </Grid.ColumnDefinitions>
+
+  <TextBox Height = '23' HorizontalAlignment = 'Left' Margin = '6,0,0,0' Name = 'textBox1' Width = '138' Grid.ColumnSpan='2'  />
+  <TextBox Height = '23' HorizontalAlignment = 'Left' Margin = '6,50,0,0' Name = 'textBox2' Width = '138' Grid.ColumnSpan='2' />
+  <TextBox Height = '23' HorizontalAlignment = 'Right' Margin = '6,25,0,0' Name = 'textBox3' Width = '70' Grid.ColumnSpan='2' />
+
+  </Grid>
+  </GroupBox>
+
+ <GroupBox Header='[Кнопки]' Height='92' HorizontalAlignment='Left' Margin='0,95,0,0' Name='groupBox2' VerticalAlignment='Top' 
+Width='313' Grid.ColumnSpan='2'>
+ <Grid>
+ <Grid.ColumnDefinitions>
+ <ColumnDefinition Width='74*' />
+ <ColumnDefinition Width='227' />
+ </Grid.ColumnDefinitions>
+ <Button Content='+' Height='23' HorizontalAlignment='Left' 
+Margin='6,6,0,0' Name='button5' VerticalAlignment='Top' Width='138' 
+Grid.ColumnSpan='2' />
+ <Button Content='-' Height='23' HorizontalAlignment='Left' Margin='6,35,0,0' Name='button6' VerticalAlignment='Top' 
+Width='138' Grid.ColumnSpan='2' />
+ <Button Content='*' Height='23' HorizontalAlignment='Left' 
+Margin='81,6,0,0' Name='button7' VerticalAlignment='Top' Width='137' 
+Grid.Column='1' />
+ <Button Content='/' Height='23' HorizontalAlignment='Left' Margin='81,35,0,0' Name='button8' VerticalAlignment='Top' 
+Width='137' Grid.Column='1' />
+ </Grid>
+ </GroupBox>
+ 
+ 
+
+ </Grid>
+</Window>
+" 
+// загрузка разметки XAML
+let getWindow(mwXaml) =
+    let xamlObj=XamlReader.Parse(mwXaml)
+    xamlObj :?> Window
+
+let win = getWindow(mwXaml)
+//получение экземпляров элементов управления 
+
+//главная форма:
+
+let button5 = win.FindName("button5") :?> Button
+let button6 = win.FindName("button6") :?> Button
+let button7 = win.FindName("button7") :?> Button
+let button8 = win.FindName("button8") :?> Button
+let textbox1 = win.FindName("textBox1") :?>TextBox
+let textbox2 = win.FindName("textBox2") :?>TextBox
+let textbox3 = win.FindName("textBox3") :?>TextBox
+
+textbox1.Text<-"1"
+textbox2.Text<-"1"
+//обработка событий
+
+//button5.Click.AddHandler(fun _ _ -> win.Top <- win.Top - 10.)
+button5.Click.Add(fun e -> (textbox3.Text <- 
+    if (textbox1.Text = "" || textbox2.Text = "" ) then "NICHEGO"
+    else(string (double(textbox1.Text)+double(textbox2.Text)))))
+button6.Click.Add(fun e -> (textbox3.Text <- 
+    if (textbox1.Text = "" || textbox2.Text = "" ) then "NICHEGO"
+    else(string (double(textbox1.Text)-double(textbox2.Text)))))
+button7.Click.Add(fun e -> (textbox3.Text <- 
+    if (textbox1.Text = "" || textbox2.Text = "" ) then "NICHEGO"
+    else (string (double(textbox1.Text)*double(textbox2.Text)))))
+button8.Click.Add(fun e -> (textbox3.Text <- 
+    if (textbox1.Text = "" || textbox2.Text = "" ) then "NICHEGO"
+    else if (textbox2.Text) = "0" then "INFInity"
+        else (string (double(textbox1.Text)/double(textbox2.Text)))))
+
+
+
 [<STAThread>] ignore <| (new Application()).Run win 
