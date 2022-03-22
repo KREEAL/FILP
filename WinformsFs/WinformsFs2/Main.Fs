@@ -138,16 +138,18 @@ let nrb3 = wind.FindName("radioButton3") :?> RadioButton
 let nl = wind.FindName("label1") :?> Label
 let ntb = wind.FindName("textBox1") :?> TextBox
 button12.Click.AddHandler(fun _ _ -> wind.Show()|>ignore)
-(*
-ncb.Checked.Add(fun _ -> ntb.IsEnabled <-true
-        nb1.IsEnabled <-true )
-ncb.Unchecked.Add(fun _ -> ntb.IsEnabled<-false
+
+ncb.Checked.Add(fun _ -> 
+    ntb.IsEnabled<-true
+    nb1.IsEnabled<-true)
+ncb.Unchecked.Add(fun _ -> 
+    ntb.IsEnabled <- false 
     nb1.IsEnabled<-false)
 
 nb1.Click.AddHandler(fun _ _ -> wind.Title<-ntb.Text)
 nb2.Click.AddHandler(fun _ _ -> wind.Hide())
 nrb1.Checked.Add(fun _ -> nl.Content<-"1")
 nrb2.Checked.Add(fun _ -> nl.Content<-"2")
-nrb3.Checked.Add(fun _ -> nl.Content<-"3"*)
+nrb3.Checked.Add(fun _ -> nl.Content<-"3")
 // запуск приложения
 [<STAThread>] ignore <| (new Application()).Run win 
