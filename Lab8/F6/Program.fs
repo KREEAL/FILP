@@ -135,6 +135,16 @@ type Tree=
         let randomChars = [|for i in 0..len -> chars.[random.Next(charsLen)]|]
         String(randomChars)
     q*)
+let rec randomStr str length =
+    let chars = "ABCDEFGHIJKLMNOPQRSTUVWUXYZ"
+    let random = System.Random() 
+    if String.length str < length then
+        let newChar = chars.[random.Next(String.length chars)]
+        let newString = str+newChar.ToString()
+        randomStr newString length
+    else
+        str
+
 let randomDt l = 
     let random = System.Random()
     let day = random.Next(1,32)
@@ -149,10 +159,10 @@ let randNum l =
     random.Next(1000000,10000000)
 
 let rec generator obj i =
+    let stringLengthGen = new Random()
     if i < 30000 then
         let newI = i + 1
-        let newDr = driversLicense("Name","Surname",randomDt 0,"Place",randomDt 0,randomDt 0,randNum 0)
-        //Console.WriteLine(newDr)
+        let newDr = driversLicense(randomStr "" (stringLengthGen.Next(5,15)), randomStr "" (stringLengthGen.Next(5,15)),randomDt 0,randomStr "" (stringLengthGen.Next(5,15)),randomDt 0,randomDt 0,randNum 0)
         generator (List.append obj [newDr]) newI
     else
         obj
@@ -161,6 +171,8 @@ let rec generator obj i =
 
 [<EntryPoint>]
 let main argv =
+
+    Console.WriteLine(randomStr "" 10)
     
     let drL1 = driversLicense("Иван","Иванов",DateTime.Parse "01.01.1991","г.Москва",DateTime.Parse "01.01.2021",DateTime.Parse "01.01.2031",7777777)
     let drL2 = driversLicense("Петр","Петров",DateTime.Parse "02.02.1992","г.Санкт-Петербург",DateTime.Parse "02.02.2022",DateTime.Parse "02.02.2032",6666666)
